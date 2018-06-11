@@ -1,0 +1,16 @@
+{
+ "alumnos": [
+	{
+	   "id": 1,
+	   "nombre": "Pepe",
+	   "apellidos": "Pepe",
+	   "dni": "12345678R"
+	},
+	{
+		"id": 2,
+		"nombre": "Juan",
+		"apellidos": "II",
+		"dni": "12341234"
+	}
+ ]
+}

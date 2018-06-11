@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Formulario Alumno</h1>
+  <form *ngIf="active" #alumonoForm="ngForm">
+    <pre>{{alumonoForm.value | json}}</pre>
+    <fieldset>
+      <div class="form-group">
+        <label for="nombre" class="control-label">Nombre</label>
+        <input type="text" class="form-control " minlength="4" #nombre="ngModel" [(ngModel)]="alumno.nombre" required autofocus name="nombre">
+        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+
+          <div *ngIf="nombre.errors.required">
+            Nombre is required.
+          </div>
+          <div *ngIf="nombre.errors.minlength">
+            Nombre must be at least 4 characters long.
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" class="form-control" #apellidos="ngModel" [(ngModel)]="alumno.apellidos" required name="apellidos">
+        <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)" class="alert alert-danger">
+
+          <div *ngIf="apellidos.errors.required">
+            Apellidos is required.
+          </div>
+          <div *ngIf="apellidos.errors.minlength">
+            Apellidos must be at least 4 characters long.
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dni">Dni</label>
+        <input type="text" class="form-control" #dni [(ngModel)]="alumno.dni" required name="dni">
+        <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="alert alert-danger">
+
+            <div *ngIf="dni.errors.required">
+              DNI is required.
+            </div>
+            <div *ngIf="dni.errors.minlength">
+                DNI must be at least 4 characters long.
+            </div>
+  
+          </div>
+      </div>
+      <div class="form-group text-center">
+        <div class="input-group" style="margin:auto;">
+          <button type="button"  (click)="add()" class="btn btn-primary">Add</button>
+
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
