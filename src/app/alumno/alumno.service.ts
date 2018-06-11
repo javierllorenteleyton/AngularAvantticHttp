@@ -61,6 +61,51 @@ export class AlumnoService {
           .catch(this.handleError);
       }
 
+
+      update(alumno: Alumno): Promise<Alumno> {
+        const url = `${this.apiUrl}/${alumno.id}`;
+        return this.http
+          .put(url, JSON.stringify(alumno), {headers: this.headers})
+          .toPromise()
+          .then(() => alumno)
+          .catch(this.handleError);
+      }
+
+      delete2(id: number): Promise<void> {
+        const url = `${this.apiUrl}/${id}`;
+        return this.http.delete(url, {headers: this.headers})
+          .toPromise()
+          .then(() => null)
+          .catch(this.handleError);
+      }
+
+      doSearch(term: string) {
+        let promise = new Promise((resolve, reject) => {
+        let apiUrl =`${this.apiUrl}?apellidos=${term}`;
+        this.http.get(apiUrl)
+                .toPromise()
+                .then(
+                    res => { //Succes
+                        this.results = res.json().map(item => {
+                            return new Alumno(
+                                item.id,
+                                item.nombre,
+                                item.apellidos,
+                                item.dni
+                            );
+
+                        });
+                        //this.results = res.json().results;
+                        resolve();
+                    },
+                    msg => { //Error
+                        reject(msg);
+                    }
+                );
+        });
+        return promise;
+      }
+
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
     }   

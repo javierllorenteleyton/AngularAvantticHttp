@@ -22,7 +22,7 @@ export class ModificarAlumnoComponent implements OnInit {
    public mod() {
      console.log("Entra en el modo mod");
      console.log("Add alumno" + this.alumno.nombre);
-     this.alumnoservice.modAlumno( this.alumnoservice.id,this.alumno);
+     this.alumnoservice.update( this.alumno);
    }
    goBack(): void {
     this.location.back();

@@ -21,6 +21,8 @@ export class AgreagarAlumnoComponent implements OnInit {
      console.log("Entra en el modo add");
      console.log("Add alumno" + this.alumno.nombre);
      this.alumnoservice.create(this.alumno);
+     this.location.back();
+  
    }
 
    goBack(): void {

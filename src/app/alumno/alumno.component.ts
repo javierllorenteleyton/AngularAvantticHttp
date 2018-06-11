@@ -26,7 +26,8 @@ export class AlumnoComponent implements OnInit {
   }
 
   delete(alumno: Alumno) {
-    this.alumnoservice.delete(alumno);
+    this.alumnoservice.delete2(alumno.id);
+    this.refreshAlumnos();
   }
   goToAlumnoDetails(id: number) {
     this.alumnoservice.id=id;
@@ -35,5 +36,9 @@ export class AlumnoComponent implements OnInit {
 
   goToAlumnoNew(id: number) {
     this.router.navigate(['alumno/agregar-alumno']);
+  }
+
+  doSearch(term: string) {
+    this.alumnoservice.doSearch(term);
   }
 }

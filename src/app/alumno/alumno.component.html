@@ -4,7 +4,14 @@
   <h2>Tabla Alumnos </h2>
   
   <button type="button" (click)="goToAlumnoNew(id)" class="btn btn-primary">Agregar alumno</button>
-  
+  <form class = "form-inline">
+      <div class="form-group">
+        <input type="search" class="form-control"
+        placeholder="Enter search string" #search>
+      </div>
+      <button type="button" class="btn btn-primary"
+      (click)="doSearch(search.value)">Search</button>
+      </form>
   <div class="table-responsive">
       <table class="table table-striped table-hover">
           <thead>
@@ -28,6 +35,6 @@
       </table>
   </div>
   <button type="button" (click)="refreshAlumnos()" class="btn btn-primary">Submit</button>
-  
+   <button type="button" (click)="goBack()" class="btn btn-primary">back</button>
     <router-outlet></router-outlet>
   </div>
