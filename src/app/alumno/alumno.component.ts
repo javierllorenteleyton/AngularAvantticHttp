@@ -11,6 +11,7 @@ import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 export class AlumnoComponent implements OnInit {
   id: number;
   public listAlumnos: Array<Alumno>;
+  public loading: boolean = false;
 
   constructor( private router: Router,private alumnoservice: AlumnoService) { }
 
@@ -20,7 +21,8 @@ export class AlumnoComponent implements OnInit {
 
    refreshAlumnos() {
     console.log("Entra en el modo refreshAlumnos");
-    this.listAlumnos= this.alumnoservice.getAlumnosList();
+    this.loading=true;
+    this.alumnoservice.getAlumnosList().then(_ => this.loading=false)
   }
 
   delete(alumno: Alumno) {

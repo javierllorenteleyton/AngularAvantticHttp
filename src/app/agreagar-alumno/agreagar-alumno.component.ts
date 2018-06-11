@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Alumno } from '../alumno/Alumno';
 import { AlumnoService } from '../alumno/alumno.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-agreagar-alumno',
   templateUrl: './agreagar-alumno.component.html',
@@ -9,16 +10,20 @@ import { AlumnoService } from '../alumno/alumno.service';
 export class AgreagarAlumnoComponent implements OnInit {
   alumno: Alumno;
   active = true;
-  constructor( private alumnoservice: AlumnoService) { }
+  constructor( private location: Location,private alumnoservice: AlumnoService) { }
 
   ngOnInit() {
-      this.alumno=new Alumno("","","");
+      this.alumno=new Alumno(0,"","","");
       this.active = true;
   }
 
    public add() {
      console.log("Entra en el modo add");
      console.log("Add alumno" + this.alumno.nombre);
-     this.alumnoservice.addAlumno(this.alumno);
+     this.alumnoservice.create(this.alumno);
    }
+
+   goBack(): void {
+    this.location.back();
+  }
 }
